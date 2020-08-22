@@ -1,0 +1,67 @@
+
+## Add React in One Minute {#add-react-in-one-minute}
+
+In this section, we will show how to add a React component to an existing HTML page. You can follow along with your own website, or create an empty HTML file to practice.
+
+There will be no complicated tools or install requirements -- **to complete this section, you only need an internet connection, and a minute of your time.**
+
+Optional: [Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
+
+### Step 1: Add a DOM Container to the HTML {#step-1-add-a-dom-container-to-the-html}
+
+First, open the HTML page you want to edit. Add an empty `<div>` tag to mark the spot where you want to display something with React. For example:
+
+```html{3}
+<!-- ... existing HTML ... -->
+
+<div id="like_button_container"></div>
+
+<!-- ... existing HTML ... -->
+```
+
+We gave this `<div>` a unique `id` HTML attribute. This will allow us to find it from the JavaScript code later and display a React component inside of it.
+
+>Tip
+>
+>You can place a "container" `<div>` like this **anywhere** inside the `<body>` tag. You may have as many independent DOM containers on one page as you need. They are usually empty -- React will replace any existing content inside DOM containers.
+
+### Step 2: Add the Script Tags {#step-2-add-the-script-tags}
+
+Next, add three `<script>` tags to the HTML page right before the closing `</body>` tag:
+
+```html{5,6,9}
+  <!-- ... other HTML ... -->
+
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+  <!-- Load our React component. -->
+  <script src="like_button.js"></script>
+
+</body>
+```
+
+The first two tags load React. The third one will load your component code.
+
+### Step 3: Create a React Component {#step-3-create-a-react-component}
+
+Create a file called `like_button.js` next to your HTML page.
+
+Open **[this starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** and paste it into the file you created.
+
+>Tip
+>
+>This code defines a React component called `LikeButton`. Don't worry if you don't understand it yet -- we'll cover the building blocks of React later in our [hands-on tutorial](/tutorial/tutorial.html) and [main concepts guide](/docs/hello-world.html). For now, let's just get it showing on the screen!
+
+After **[the starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, add two lines to the bottom of `like_button.js`:
+
+```js{3,4}
+// ... the starter code you pasted ...
+
+const domContainer = document.querySelector('#like_button_container');
+ReactDOM.render(e(LikeButton), domContainer);
+```
+
+These two lines of code find the `<div>` we added to our HTML in the first step, and then display our "Like" button React component inside of it. 
